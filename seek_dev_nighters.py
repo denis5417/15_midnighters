@@ -23,7 +23,7 @@ def get_midnighters():
     for attempt in load_attempts():
         attempt_date = pytz.timezone(attempt['timezone']).localize(datetime.fromtimestamp(attempt['timestamp']))
         right_attempt_time = attempt_date.astimezone(right_tz).time()
-        if time(0, 0) <= right_attempt_time <= time(5, 0):
+        if 0 <= right_attempt_time.hour() <= 5:
             midnighters.append(attempt['username'])
     return set(midnighters)  # usernames should not be repeated
 
